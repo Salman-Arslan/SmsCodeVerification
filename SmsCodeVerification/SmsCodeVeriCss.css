@@ -1,0 +1,227 @@
+﻿
+
+:root {
+    --placeholder-color: hsl(240, 54%, 87%);
+    --bg-color: hsl(240, 54%, 97%);
+    --focus-color: hsla(240, 54%, 61%, 0.6);
+    --shadow-color: hsla(240, 54%, 61%, 0.2);
+    --text-color: hsl(0, 0%, 20%);
+    --text-color-inversed: hsl(0, 0%, 95%);
+    --success-color: hsl(145, 63%, 42%);
+    --success-color-desaturated: hsl(145, 0%, 42%);
+    --failure-color: hsl(0, 79%, 63%);
+    --border-radius: 6px;
+    --z-index-xs: 1;
+    --z-index-sm: 10;
+    --z-index-md: 100;
+    --easing: cubic-bezier(0.25, 0.01, 0.25, 1);
+    --transition-duration-step-1: 450ms;
+    --transition-duration-step-2: 300ms;
+    --transition-duration-step-3: 300ms;
+    --transition-delay-step-2: calc(var(--transition-duration-step-1));
+    --transition-delay-step-3: calc( var(--transition-duration-step-1) + var(--transition-duration-step-2) );
+    --transition-step-1: var(--transition-duration-step-1) var(--easing);
+    --transition-step-2: var(--transition-duration-step-2) var(--easing) var(--transition-delay-step-2);
+    --transition-step-3: var(--transition-duration-step-3) var(--easing) var(--transition-delay-step-3);
+}
+
+
+
+.fieldset {
+    display: inline-block;
+}
+
+    .fieldset .fds {
+        display: grid;
+        justify-content: center;
+    }
+
+        .fieldset .fds .label {
+            font-size: 14px;
+            line-height: 15px;
+            text-align: center;
+            letter-spacing: 0.01em;
+            color: var(--text-color);
+        }
+
+        .fieldset .fds ::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            transform: translateX(-100%);
+        }
+
+    .fieldset .fds {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: center;
+        column-gap: 12px;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        will-change: transform;
+        padding: 6px;
+        margin: -6px;
+    }
+
+        .fieldset .fds .box::after {
+            transform: translateY(100%);
+            background-color: var(--success-color-desaturated);
+            opacity: 0;
+            z-index: var(--z-index-sm);
+            transition: transform 450ms, opacity 450ms, background-color 450ms;
+        }
+
+        .fieldset .fds .box::before, .fieldset .fds .box::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .fieldset .fds .box::before {
+            background: var(--bg-color);
+            z-index: 1;
+            transition: background-color 450ms cubic-bezier(0.25, 0.01, 0.25, 1);
+        }
+
+        .fieldset .fds .box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 42px;
+            width: 42px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 6px 1px var(--shadow-color);
+            overflow: hidden;
+            will-change: transform;
+        }
+
+            .fieldset .fds .box .field:placeholder {
+                color: var(--placeholder-color);
+            }
+
+            .fieldset .fds .box .field {
+                position: relative;
+                border: 0;
+                outline: 0;
+                font-size: 25.21px;
+                line-height: 42px;
+                color: var(--text-color);
+                background-color: transparent;
+                text-align: center;
+                z-index: 100;
+            }
+
+    .fieldset .prcs {
+        height: 16px;
+        margin-top: 5px;
+        background-color: #999898;
+        font-size: 10px;
+        visibility: hidden;
+    }
+
+        .fieldset .prcs .pce {
+            text-align: right;
+            background-color: rgb(204, 17, 78);
+            height: 16px;
+            color: rgb(255, 255, 255);
+            line-height: 15px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+.animate-failure.fds {
+    animation-name: shaking;
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.25, 0.01, 0.25, 1);
+    animation-delay: 300ms;
+}
+
+    .animate-failure.fds > .box::before {
+        background-color: transparent;
+    }
+
+    .animate-failure.fds > .box::after {
+        background-color: var(--failure-color);
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .animate-failure.fds > .box > .field,
+    .animate-failure.fds > .box > .field::placeholder {
+        color: var(--text-color-inversed);
+        transition: color 450ms;
+    }
+
+
+.animate-success.fds {
+    padding: 0;
+    margin: 0;
+}
+
+    .animate-success.fds::before {
+        background-color: var(--success-color);
+        transform: translateX(0);
+        transition: 300ms;
+    }
+
+    .animate-success.fds > .box {
+        box-shadow: none;
+        transition: transform 300ms;
+    }
+
+        /* .animate-success.fds > .box:nth-child(1) {
+            transform: translateX(24px);
+        }
+
+        .animate-success.fds > .box:nth-child(2) {
+            transform: translateX(12px);
+        }
+
+        .animate-success.fds > .box:nth-child(4) {
+            transform: translateX(-12px);
+        }
+
+        .animate-success.fds > .box:nth-child(5) {
+            transform: translateX(-24px);
+        }*/
+
+        .animate-success.fds > .box::before {
+            background-color: transparent;
+        }
+
+        .animate-success.fds > .box::after {
+            background-color: var(--success-color);
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .animate-success.fds > .box > .field,
+        .animate-success.fds > .box > .field::placeholder {
+            color: var(--text-color-inversed);
+            transition: color var(--transition-step-1);
+        }
+
+
+@keyframes shaking {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25%, 75% {
+        transform: translateX(10px);
+    }
+
+    50% {
+        transform: translateX(-10px);
+    }
+}

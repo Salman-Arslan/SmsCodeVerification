@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="SmsCodeVeriJs.js"></script>
+    <link href="SmsCodeVeriCss.css" rel="stylesheet" />
+</head>
+<body>
+
+
+        <div id="txtSmsAln"></div>
+
+        <script type="text/javascript">
+        var sms;
+
+        sms = new smsKodu({
+            Dom: 'txtSmsAln',
+            InputLength: 6,
+            Time: 300,
+            RegexPatern: '^[0-9]$',
+        //    AgainBtn: '#btnSmstkrDgr',
+            notficTime: 3000
+        });
+
+        //sms.StartTime();
+
+        //sms.Value();
+
+        //sms.NotficSuccess();
+
+        //sms.NotficFail();
+
+        //sms.NotficClear();
+
+        //sms.ValueClear();
+
+
+
+
+
+        </script>
+
+    </body>
+</html>
