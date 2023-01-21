@@ -9,37 +9,39 @@
 <body>
 
 
-        <div id="txtSmsAln"></div>
+    <div id="txtSmsAln"></div>
+    <button type="button" id="btnSmstkrDgr" hidden>...</button>
 
-        <script type="text/javascript">
-        var sms;
 
-        sms = new smsKodu({
+    <script type="text/javascript">
+
+
+        var sms = new smsKodu({
             Dom: 'txtSmsAln',
             InputLength: 6,
             Time: 300,
             RegexPatern: '^[0-9]$',
-        //    AgainBtn: '#btnSmstkrDgr',
+            AgainBtn: '#btnSmstkrDgr',
             notficTime: 3000
         });
 
-        //sms.StartTime();
+                //sms.StartTime();
 
-        //sms.Value();
+                //sms.Value();
 
-        //sms.NotficSuccess();
+                //sms.NotficSuccess();
 
-        //sms.NotficFail();
+                //sms.NotficFail();
 
-        //sms.NotficClear();
+                //sms.NotficClear();
 
-        //sms.ValueClear();
-
-
+                //sms.ValueClear();
 
 
 
-        </script>
 
-    </body>
+
+    </script>
+
+</body>
 </html>
